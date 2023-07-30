@@ -1,0 +1,15 @@
+{
+  "name": "encrypter",
+  "version": "1.0.0",
+  "description": "The Encrypter class provides methods to encrypt and decrypt messages using a custom encryption algorithm.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ROUSSElLE Ylan",
+  "license": "ISC",
+  "dependencies": {
+    "pako": "^2.1.0"
+  }
+}
