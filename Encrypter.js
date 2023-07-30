@@ -91,7 +91,7 @@ export default class Encrypter {
 class Lib {
 
     static stringToBinary(string) {
-        console.log("=> stringToBinary")
+        
         let output = "";
         for (var i = 0; i < string.length; i++) {
             let binary = string[i].charCodeAt(0).toString(2);
@@ -105,7 +105,7 @@ class Lib {
     }
 
     static binaryToString(binaryString) {
-        console.log("=> binaryToString")
+        
         var binaryChunks = binaryString.match(/.{1,8}/g);
         var text = "";
 
@@ -118,7 +118,7 @@ class Lib {
     }
 
     static removeSpace(string) {
-        console.log("=> removeSpace")
+        
         let output = string
         while (output.includes(" ")) {
             output = output.replace(" ", "")
@@ -127,7 +127,7 @@ class Lib {
     }
 
     static compressString(inputString) {
-        console.log("=> compressString")
+        
         try {
             // Convertir la chaîne de caractères en un tableau de bytes (Uint8Array)
             const encoder = new TextEncoder();
@@ -147,7 +147,7 @@ class Lib {
     }
 
     static decompressString(compressedString) {
-        console.log("=> decompressString")
+        
         try {
             // Convertir la chaîne encodée en base64 en un tableau de bytes compressé (Uint8Array)
             const compressedArray = new Uint8Array([...atob(compressedString)].map(char => char.charCodeAt(0)));
