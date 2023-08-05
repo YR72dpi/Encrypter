@@ -111,6 +111,8 @@ No idea for a encryption key ?
 
 ```bash
 npm run keygen
+```
+```text
 
 | Choose your favorite ⤵️
 | - -X8.f0@/)1nrOoLWE5uGc6G(tMv1G_ -
