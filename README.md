@@ -1,11 +1,11 @@
+### ⚠️ Important ⚠️
+
+__Please note__ that this is a custom encryption implementation and may not be as secure as standard encryption algorithms. For real-world security, it's recommended to use well-established encryption libraries and protocols.
+
 *thank to chatGPT for the documentation*
 # _Encrypter_ Class Documentation
 
 The `Encrypter` class provides methods to encrypt and decrypt messages using a custom encryption algorithm. It also offers multi-level encryption and decryption for enhanced security. The encryption process involves salting and bitwise XOR operations between the message and a derived key. Additionally, the class uses the `pako` library for data compression.
-
-### ⚠️ Important ⚠️
-
-__Please note__ that this is a custom encryption implementation and may not be as secure as standard encryption algorithms. For real-world security, it's recommended to use well-established encryption libraries and protocols.
 
 ## Importing the Class
 
@@ -101,26 +101,51 @@ const multiEncryptedMessage = Encrypter.multiEncrypt(message, KEY, iteration); /
 const multiDecryptedMessage = Encrypter.multiDecrypt(multiEncryptedMessage, KEY, iteration);  // output : Hello, World!
 ```
 
-## To improve it
+# Statistical
+
+Some performance data
+
+Configuration : 
+```javascript
+const KEY = "secret_key";
+const message = "Hello, World!";
+```
+
+## Length of iterable results
+`static multiEncrypt(msg, KEY, iteration)`
+| Number of iteration | Number of result's character  |
+|:-------------------:|:-------------------:|
+|         1           |         153         |
+|         2           |         601         |
+|         3           |         1789        |
+|         4           |         4877        |
+|         5           |         12213       |
+|         6           |         30441       |
+|         7           |         73193       |
+
+# To improve it
 - can encrypt file
 - can encrypt with key's array
 
 ## Bonus 😉
+<details>
+    <summary>Keygen</summary>
 
-No idea for a encryption key ?
+    No idea for a encryption key ?
 
-```bash
-npm run keygen
+    ```bash
+    npm run keygen
 
-| Choose your favorite ⤵️
-| - -X8.f0@/)1nrOoLWE5uGc6G(tMv1G_ -
-| - HQNkSE$<0hll2#6<A1HoVa8Ti%n9^D -
-| - IDNi;4Pkn2hD^zlb}@HzL09GFyoqpO -
-| - 0,*ej4%.h/XS]!y=-^6k9q:JBf#n@> -
-| - XxVEt#!k3KqlWD#]]Vfwn&w0!45q;X -
-| - @S3LV3jJ.nm@ghXM=*KQKcApSWE:%x -
-| - ^b1I6B(E8$)GmG{EKD{cGjQ6w4E]JM -
-| - &0z%ROS?,)qXyujv3W#d9[C{%b+vX& -
-| - ayQtJ)a,q8-{gB?RCT]o3Ey$$vL(_n -
-| - +(^Wn5uS?9Mh_}PG@<E6qwoRL!50rI -
-```
+    | Choose your favorite ⤵️
+    | - -X8.f0@/)1nrOoLWE5uGc6G(tMv1G_ -
+    | - HQNkSE$<0hll2#6<A1HoVa8Ti%n9^D -
+    | - IDNi;4Pkn2hD^zlb}@HzL09GFyoqpO -
+    | - 0,*ej4%.h/XS]!y=-^6k9q:JBf#n@> -
+    | - XxVEt#!k3KqlWD#]]Vfwn&w0!45q;X -
+    | - @S3LV3jJ.nm@ghXM=*KQKcApSWE:%x -
+    | - ^b1I6B(E8$)GmG{EKD{cGjQ6w4E]JM -
+    | - &0z%ROS?,)qXyujv3W#d9[C{%b+vX& -
+    | - ayQtJ)a,q8-{gB?RCT]o3Ey$$vL(_n -
+    | - +(^Wn5uS?9Mh_}PG@<E6qwoRL!50rI -
+    ```
+</details>
