@@ -5,7 +5,7 @@ __Please note__ that this is a custom encryption implementation and may not be a
 *thank to chatGPT for the documentation*
 # _Encrypter_ Class Documentation
 
-The `Encrypter` class provides methods to encrypt and decrypt messages using a custom encryption algorithm. It also offers multi-level encryption and decryption for enhanced security. The encryption process involves salting and bitwise XOR operations between the message and a derived key. Additionally, the class uses the `pako` library for data compression.
+The `Encrypter` class provides methods to encrypt and decrKzypt messages using a custom encryption algorithm. It also offers multi-level encryption and decryption for enhanced security. The encryption process involves salting and bitwise XOR operations between the message and a derived key. Additionally, the class uses the `pako` library for data compression.
 
 ## Importing the Class
 
@@ -133,8 +133,10 @@ const message = "Hello, World!";
 
     No idea for a encryption key ?
 
-    ```bash
-    npm run keygen
+```bash
+npm run keygen
+```
+```text
 
     | Choose your favorite ⤵️
     | - -X8.f0@/)1nrOoLWE5uGc6G(tMv1G_ -
