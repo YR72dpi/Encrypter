@@ -6,12 +6,14 @@ export default class Encrypter {
         const SALT = parseInt(Math.random() * 1000)
         const SALT_KEY = String(SALT) + KEY
 
-        const SALT64 = btoa(SALT)
         const SALT_KEY64 = btoa(SALT_KEY)
+
         const binary = {
             "SALT_KEY64": Lib.removeSpace(Lib.stringToBinary(SALT_KEY64)),
+            "SALT": Lib.removeSpace(Lib.stringToBinary(String(SALT))),
             "msg": Lib.removeSpace(Lib.stringToBinary(msg))
         }
+        var output = ""
 
         let binaryTextSplited = binary.msg.split("")
         let binarySaltKeySplited = binary.SALT_KEY64.split("")
@@ -21,50 +23,35 @@ export default class Encrypter {
             encryptedTextBinary += String(binaryTextSplited[i] ^ binarySaltKeySplited[i % binarySaltKeySplited.length])
         }
 
-        let encryptedToken = SALT64 + "-" + btoa(encryptedTextBinary)
-        encryptedToken = btoa(encryptedToken)
-
-        let encryptedTokenCompressed = Lib.compressString(encryptedToken)
-
-        let output = ""
-        if (encryptedToken.length < encryptedTokenCompressed.length) {
-            output = encryptedToken
-        } else {
-            output = encryptedTokenCompressed + "c"
-        }
+        output = Lib.compressString(binary.SALT + "." + encryptedTextBinary)
 
         return output
     }
 
     static decrypt(msg, KEY) {
-        if (msg.substr(msg.length - 1, 1) === "c") {
-            msg = msg.slice(0, msg.length - 1) + msg.slice(msg.length - 1 + 1);
-            msg = Lib.decompressString(msg)
-        }
+        var output = ""
 
-        msg = atob(msg)
-
-        const SALT = atob(msg.split("-")[0])
+        const SALT = Lib.binaryToString(Lib.decompressString(msg).split(".")[0])
         const SALT_KEY = String(SALT) + KEY
 
-        const SALT64 = SALT
         const SALT_KEY64 = btoa(SALT_KEY)
 
         const binary = {
-            "SALT_KEY64": Lib.removeSpace(Lib.stringToBinary(SALT_KEY64))
+            "SALT_KEY64": Lib.removeSpace(Lib.stringToBinary(SALT_KEY64)),
+            "msg": Lib.decompressString(msg).split(".")[1]
         }
 
-        let binaryTextSplited = atob(msg.split("-")[1]).split("")
+        let binaryTextSplited = binary.msg
         let binarySaltKeySplited = binary.SALT_KEY64.split("")
-
-        let decryptedBinary = ""
+        
+        let encryptedTextBinary = ""
         for (let i = 0; i < binaryTextSplited.length; i++) {
-            decryptedBinary += String(binaryTextSplited[i] ^ binarySaltKeySplited[i % binarySaltKeySplited.length])
+            encryptedTextBinary += String(binaryTextSplited[i] ^ binarySaltKeySplited[i % binarySaltKeySplited.length])
         }
 
-        let decryptedMsg = Lib.binaryToString(decryptedBinary)
+        output = Lib.binaryToString(encryptedTextBinary)
 
-        return decryptedMsg
+        return output
     }
 
     static multiEncrypt(msg, KEY, iteration) {
